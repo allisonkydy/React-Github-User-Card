@@ -1,3 +1,38 @@
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+}
+
 .App {
   text-align: center;
+  background: #1c1c42;
+  color: #f4f4f4;
+  padding: 20px 0 50px;
+}
+
+.App h1 {
+  margin-bottom: 40px;
+}
+
+.Card {
+  width: 60%;
+  margin: 0 auto;
+  padding: 20px;
+  background: rgba(244, 244, 244, 0.7);
+  color: #1c1c42;
+  border-radius: 10px;
+}
+
+.Card * {
+  margin-bottom: 10px;
+}
+
+.Card ul {
+  list-style: none;
+}
+
+.Card li {
+  margin: unset;
 }

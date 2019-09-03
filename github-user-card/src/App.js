@@ -35,8 +35,7 @@ class App extends React.Component {
         .then(response => {
           console.log(response);
           // get an array of follower data and set the array into state
-          this.setState(
-            () => ({ followersData: this.getFollowers(response.data) }));
+          this.setState({ followersData: response.data })
         })
         .catch(error => {
           console.log(error);
@@ -44,30 +43,47 @@ class App extends React.Component {
     }
   }
 
+  // componentDidUpdate(prevProps, prevState) {
+  //   // if the userData is updated
+  //   if (this.state.userData !== prevState.userData) {
+  //     // update followersData
+  //     axios.get(this.state.userData.followers_url)
+  //       .then(response => {
+  //         console.log(response);
+  //         // get an array of follower data and set the array into state
+  //         this.setState(
+  //           () => ({ followersData: this.getFollowers(response.data) }));
+  //       })
+  //       .catch(error => {
+  //         console.log(error);
+  //       });
+  //   }
+  // }
+
     // returns an array of the user's followers
-    getFollowers = followers => {
-      let followersArray = [];
-      followers.forEach(follower => {
-        axios.get(follower.url)
-          .then(response => {
-            // console.log(response);
-            followersArray.push(response.data);
-          })
-          .catch(error => console.log(error))
-      })
-      return followersArray;
-    };
+    // getFollowers = followers => {
+    //   let followersArray = [];
+    //   followers.forEach(follower => {
+    //     axios.get(follower.url)
+    //       .then(response => {
+    //         // console.log(response);
+    //         followersArray.push(response.data);
+    //       })
+    //       .catch(error => console.log(error))
+    //   })
+    //   return followersArray;
+    // };
 
   render() {
     console.log("rendering now");
-    console.log("followers Data", this.state.followersData);
+    // console.log("followers Data", this.state.followersData);
     return (
       <div className="App">
         <h1>github user cards</h1>
-        <Card userData={this.state.userData} />
-        {this.state.followersData.map(follower => {
+        <Card userData={this.state.userData} followersData={this.state.followersData} />
+        {/* {this.state.followersData.map(follower => {
           return <Card userData={follower} />
-        })}
+        })} */}
       </div>
     );
   }
