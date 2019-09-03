@@ -10,7 +10,7 @@ class App extends React.Component {
     this.state = {
       user: "allisonkydy",
       userData: {},
-      followersData: {}
+      followersData: []
     };
   }
 
@@ -21,53 +21,53 @@ class App extends React.Component {
         console.log(response);
         // then put the data into userData state
         this.setState(() => ({ userData: response.data }));
-        return response.data;
-      })
-      .then(response => {
-        console.log(response);
-        // get an array of follower data for each of the user's followers
-        const followers = this.getFollowers(response.followers_url);
-        // set the followers data into state
-        this.setState(
-          () => ({ followersData: followers }),
-          () => console.log("followersData", this.state.followersData)
-        );
       })
       .catch(error => {
         console.log(error);
       });
   }
 
-  // returns an array of the user's followers
-  getFollowers = followers_url => {
-    // initialize array
-    const followersArray = [];
-    // get the user's followers data
-    axios.get(followers_url)
-      .then(response => {
-        console.log(response);
-        // for each follower, get their data and add it to array
-        response.data.forEach(follower => {
-          axios
-            .get(follower.url)
-            .then(response => {
-              followersArray.push(response.data);
-            })
-            .catch(error => console.log(error));
+  componentDidUpdate(prevProps, prevState) {
+    // if the userData is updated
+    if (this.state.userData !== prevState.userData) {
+      // update followersData
+      axios.get(this.state.userData.followers_url)
+        .then(response => {
+          console.log(response);
+          // get an array of follower data and set the array into state
+          this.setState(
+            () => ({ followersData: this.getFollowers(response.data) }));
+        })
+        .catch(error => {
+          console.log(error);
         });
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    }
+  }
 
-    return followersArray;
-  };
+    // returns an array of the user's followers
+    getFollowers = followers => {
+      let followersArray = [];
+      followers.forEach(follower => {
+        axios.get(follower.url)
+          .then(response => {
+            // console.log(response);
+            followersArray.push(response.data);
+          })
+          .catch(error => console.log(error))
+      })
+      return followersArray;
+    };
 
   render() {
+    console.log("rendering now");
+    console.log("followers Data", this.state.followersData);
     return (
       <div className="App">
         <h1>github user cards</h1>
         <Card userData={this.state.userData} />
+        {this.state.followersData.map(follower => {
+          return <Card userData={follower} />
+        })}
       </div>
     );
   }
