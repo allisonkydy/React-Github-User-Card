@@ -53,6 +53,7 @@ class App extends React.Component {
       <div className="App">
         <h1>github user cards</h1>
         <Card userData={this.state.userData}/>
+        <h2>Followers: </h2>
         {this.state.followersData.map(follower => {
           return <Card userData={follower} key={follower.id} />
         })}

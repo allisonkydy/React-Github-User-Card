@@ -17,8 +17,8 @@
 }
 
 .Card {
-  width: 60%;
-  margin: 0 auto;
+  width: 400px;
+  margin: 0 auto 20px;
   padding: 20px;
   background: rgba(244, 244, 244, 0.7);
   color: #1c1c42;
