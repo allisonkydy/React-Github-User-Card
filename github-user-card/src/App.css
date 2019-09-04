@@ -36,3 +36,7 @@
 .Card li {
   margin: unset;
 }
+
+.Card img {
+  width: 100%;
+}

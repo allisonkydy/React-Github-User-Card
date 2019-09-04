@@ -1,7 +1,7 @@
 import React from 'react';
 
 function Card(props) {
-  const { userData, followersData } = props;
+  const { userData } = props;
   return (
     <div className="Card">
       <img src={userData.avatar_url} alt="profile pic" />
@@ -11,12 +11,6 @@ function Card(props) {
       <p>{userData.bio}</p>
       <p>Following: {userData.following}</p>
       <p>Followers: {userData.followers}</p>
-      <p>List of followers: </p>
-      <ul>
-        {followersData.map(follower => {
-          return <li key={follower.id}>{follower.login}</li>
-        })}
-      </ul>
     </div>
   )
 }
