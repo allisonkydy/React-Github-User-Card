@@ -10,33 +10,33 @@
   background: #1c1c42;
   color: #f4f4f4;
   padding: 20px 0 50px;
+  height: 100vh;
+  overflow: hidden;
 }
 
-.App h1 {
+.main-heading {
   margin-bottom: 40px;
 }
 
-.Card {
-  width: 400px;
-  margin: 0 auto 20px;
-  padding: 20px;
-  background: rgba(244, 244, 244, 0.7);
-  color: #1c1c42;
-  border-radius: 10px;
+.card-container {
+  min-width: 700px;
+  width: 70%;
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
 }
 
-.Card * {
-  margin-bottom: 10px;
+.follower-cards {
+  overflow-y: scroll;
+  height: 70vh;
+  padding-right: 30px;
 }
 
-.Card ul {
-  list-style: none;
+.card-content * {
+  margin-bottom: 8px;
 }
 
-.Card li {
-  margin: unset;
-}
-
-.Card img {
-  width: 100%;
+.card-content div {
+  margin: 20px 0 0;
 }

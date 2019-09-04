@@ -51,12 +51,21 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <h1>github user cards</h1>
-        <Card userData={this.state.userData}/>
-        <h2>Followers: </h2>
-        {this.state.followersData.map(follower => {
-          return <Card userData={follower} key={follower.id} />
-        })}
+        <h1 className="main-heading">github user cards</h1>
+        <div class="card-container">
+          <div class="user-card">
+            <h2 className="main-heading">User: </h2>
+            <Card userData={this.state.userData}/>
+          </div>
+          <div class="follower-container">
+            <h2 className="main-heading">Followers: </h2>
+            <div class="follower-cards">
+              {this.state.followersData.map(follower => {
+                return <Card userData={follower} key={follower.id} />
+              })}
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
