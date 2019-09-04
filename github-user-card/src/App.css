@@ -40,3 +40,7 @@
 .card-content div {
   margin: 20px 0 0;
 }
+
+input, button {
+  padding: 10px;
+}
